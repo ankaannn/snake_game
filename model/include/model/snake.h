@@ -22,7 +22,8 @@ class Snake{
 public: 
     Snake();
     std::vector<Cell> get_cells();
-    void update_cells(); 
+    void update_cells(int flag); 
+    Cell get_head_cell();  
 private:
     std::vector<Cell> m_cells;
     int m_current_direction; 

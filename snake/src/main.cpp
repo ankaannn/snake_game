@@ -5,12 +5,10 @@
 int main(){
     std::cout << "hej" << std::endl;
     Snake snake;
-    Food food(10, 10); 
-    Board board(20, 20, snake, food);
-    board.update_board(); 
-    board.print_board(); 
-    board.update_board();
-    board.print_board(); 
-
-
+    Food food(2, 2); 
+    Board board(10, 10, snake, food);
+    for(int i = 0; i < 5; i++){
+        board.update_board(); 
+        board.print_board();        
+    }
 }
