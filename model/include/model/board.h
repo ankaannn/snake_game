@@ -9,11 +9,14 @@ public:
     void print_board();
     void update_board(); 
     void reset_board();
-    void add_snake_to_board(); 
+    bool add_snake_to_board(); 
+    
     void add_food_to_board(); 
     bool check_for_food();
-    void change_food_place(); 
-    void delete_food();     
+    void change_food_place();
+    bool check_for_gameover(); 
+    bool check_for_outside_board();   
+    bool check_for_duplicates_cells(int x, int y);  
 private: 
     int m_width;
     int m_height;

@@ -29,7 +29,12 @@ void Board::print_board(){
 
 void Board::update_board(){
     reset_board(); 
-    add_snake_to_board(); 
+    if(!add_snake_to_board()){
+        std::cout << "game over, crash into snake" << std::endl; 
+    }; 
+    if(check_for_outside_board()){
+        std::cout << "game over, outside the board" << std::endl;
+    }      
     add_food_to_board();
 
     m_snake.update_cells(m_has_eaten);
@@ -38,6 +43,7 @@ void Board::update_board(){
         m_has_eaten = true;
         change_food_place(); 
     } 
+   
 }
 
 void Board::reset_board(){
@@ -48,13 +54,21 @@ void Board::reset_board(){
     }
 }
 
-void Board::add_snake_to_board(){
+//returns true if the board was painted out correctly 
+bool Board::add_snake_to_board(){
     for(auto cell : m_snake.get_cells()){
         int y = cell.get_y(); 
         int x = cell.get_x(); 
-        m_board[y][x] = 1; 
+        if(check_for_duplicates_cells(x, y)){
+            return false; 
+        }
+        else{
+            m_board[y][x] = 1; 
+        }
     }
+    return true;
 }
+
 
 void Board::add_food_to_board(){
     int y = m_food.get_y(); 
@@ -90,3 +104,23 @@ void Board::change_food_place(){
     }
 }
 
+//return true if snake is outside board
+bool Board::check_for_outside_board(){
+    for(auto cell : m_snake.get_cells()){
+        if(cell.get_x() < 0 || cell.get_x() > m_width -1 || cell.get_y() < 0 || cell.get_y() > m_height -1){
+            return true; 
+        }
+    }
+    return false;
+}
+
+
+//return true if snakes cells are the same
+bool Board::check_for_duplicates_cells(int x, int y){
+    if(m_board[y][x] == 1){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
