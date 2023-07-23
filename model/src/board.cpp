@@ -2,7 +2,7 @@
 #include "model/food.h"
 #include <iostream>
 
-Board::Board(int width, int height, Snake snake, Food food):m_width(width), m_height(height), m_board(), m_snake(snake), m_food(food), m_has_eaten(false){
+Board::Board(int width, int height, Snake& snake, Food food):m_width(width), m_height(height), m_board(), m_snake(snake), m_food(food), m_has_eaten(false){
     for(int i = 0; i < height; i++){
         std::vector<int> row;
         for(int j = 0; j < width; j++){
@@ -31,17 +31,18 @@ void Board::print_board(){
 //false if game over
 bool Board::update_board(){
     reset_board(); 
-    if(!add_snake_to_board()){
-        std::cout << "game over, crash into snake" << std::endl; 
-        return false;
-    }; 
+
+    m_snake.update_cells(m_has_eaten);
+
     if(check_for_outside_board()){
         std::cout << "game over, outside the board" << std::endl;
         return false;
-    }      
+    }        
+    if(!add_snake_to_board()){
+        std::cout << "game over, crash into snake" << std::endl; 
+        return false;
+    };
     add_food_to_board();
-
-    m_snake.update_cells(m_has_eaten);
     m_has_eaten = false;
     if(check_for_food()){
         m_has_eaten = true;

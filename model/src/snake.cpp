@@ -51,3 +51,6 @@ void Snake::update_cells(int flag){
     }
 }
 
+void Snake::set_current_direction(int direction){
+    m_current_direction = direction;
+}

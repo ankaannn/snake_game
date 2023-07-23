@@ -7,6 +7,7 @@ class Game{
     public:
     Game(int board_width, int board_height);
     void run_game(); 
+    void read_keyboard(); 
     private:
     int m_board_width; 
     int m_board_height; 

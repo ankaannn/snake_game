@@ -5,7 +5,7 @@
 
 class Board{
 public:
-    Board(int width, int height, Snake snake, Food food);
+    Board(int width, int height, Snake& snake, Food food);
     void print_board();
     bool update_board(); 
     void reset_board();
@@ -21,7 +21,7 @@ private:
     int m_width;
     int m_height;
     std::vector<std::vector<int>> m_board; 
-    Snake m_snake;
+    Snake& m_snake;
     Food m_food;
     bool m_has_eaten;
 };

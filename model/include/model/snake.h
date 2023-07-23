@@ -24,6 +24,7 @@ public:
     std::vector<Cell> get_cells();
     void update_cells(int flag); 
     Cell get_head_cell();  
+    void set_current_direction(int direction); 
 private:
     std::vector<Cell> m_cells;
     int m_current_direction; 
