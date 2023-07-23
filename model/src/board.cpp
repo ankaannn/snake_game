@@ -27,13 +27,17 @@ void Board::print_board(){
     std::cout << std::endl;
 }
 
-void Board::update_board(){
+//returns true if game is still on
+//false if game over
+bool Board::update_board(){
     reset_board(); 
     if(!add_snake_to_board()){
         std::cout << "game over, crash into snake" << std::endl; 
+        return false;
     }; 
     if(check_for_outside_board()){
         std::cout << "game over, outside the board" << std::endl;
+        return false;
     }      
     add_food_to_board();
 
@@ -43,7 +47,7 @@ void Board::update_board(){
         m_has_eaten = true;
         change_food_place(); 
     } 
-   
+    return true; 
 }
 
 void Board::reset_board(){

@@ -4,4 +4,5 @@ project(snake_game)
 
 add_subdirectory(model)
 add_subdirectory(snake)
+add_subdirectory(game)
 

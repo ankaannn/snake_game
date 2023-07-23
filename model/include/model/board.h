@@ -7,7 +7,7 @@ class Board{
 public:
     Board(int width, int height, Snake snake, Food food);
     void print_board();
-    void update_board(); 
+    bool update_board(); 
     void reset_board();
     bool add_snake_to_board(); 
     
