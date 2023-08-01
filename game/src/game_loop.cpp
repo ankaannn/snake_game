@@ -9,7 +9,7 @@ Game::Game(int board_width, int board_height)
 : m_board_width(board_width), 
   m_board_height(board_height),
   m_snake(),
-  m_food(5, 5),
+  m_food(1, 1),
   m_board(m_board_width, m_board_height, m_snake, m_food) {
 
 }
@@ -26,7 +26,7 @@ void Game::run_game(){
         }
         
     }
-    std::cout << "Game over" << std::endl;
+    std::cout << "Game over (press z to close)" << std::endl;
     thread_one.join(); 
 }
 

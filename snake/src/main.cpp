@@ -12,7 +12,7 @@ int main(){
     //     board.update_board(); 
     //     board.print_board();        
     // }
-    Game game(10, 10); 
+    Game game(4, 4); 
     game.run_game();
     
 }

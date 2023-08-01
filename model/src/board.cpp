@@ -15,6 +15,7 @@ Board::Board(int width, int height, Snake& snake, Food food):m_width(width), m_h
         int y = cell.get_y(); 
         m_board[y][x] = 1; 
     }
+    add_food_to_board();
 }
 
 void Board::print_board(){
@@ -35,12 +36,16 @@ bool Board::update_board(){
     m_snake.update_cells(m_has_eaten);
 
     if(check_for_outside_board()){
-        std::cout << "game over, outside the board" << std::endl;
+        std::cout << "Game over, outside the board" << std::endl;
+        return false;
+    }
+    if(check_for_completed_board()){
+        std::cout << "Congrats, you just completed the game" << std::endl;
         return false;
     }
     add_food_to_board();
     if(!add_snake_to_board()){
-        std::cout << "game over, crash into snake" << std::endl; 
+        std::cout << "Game over, crashed into snake" << std::endl; 
         return false;
     };
     m_has_eaten = false;
@@ -90,16 +95,7 @@ bool Board::check_for_food(){
     }
     else{
         return false; 
-    }
-
-    
-    // if(m_board[y][x] == 2){
-    //     return true; 
-    // }
-    // else{
-    //     return false;
-    // }
-    
+    } 
 }
 
 void Board::change_food_place(){
@@ -136,4 +132,18 @@ bool Board::check_for_duplicates_cells(int x, int y){
     else{
         return false;
     }
+}
+
+//returns true if snake fills up the whole board
+bool Board::check_for_completed_board(){
+    for(int i = 0; i < m_width; i++){
+        for(int j = 0; j < m_height; j++){
+            if(m_board[j][i] == 1)
+                continue;
+            else{
+                return false;
+            }
+        }
+    }
+    return false; 
 }

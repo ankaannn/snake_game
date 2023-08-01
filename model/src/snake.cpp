@@ -17,7 +17,7 @@ int Cell::get_y(){
 
 
 Snake::Snake():m_cells(), m_current_direction(Left){
-    m_cells.push_back(Cell(4, 2)); 
+    m_cells.push_back(Cell(2, 2)); 
 
 }
 

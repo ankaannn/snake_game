@@ -16,7 +16,8 @@ public:
     void change_food_place();
     bool check_for_gameover(); 
     bool check_for_outside_board();   
-    bool check_for_duplicates_cells(int x, int y);  
+    bool check_for_duplicates_cells(int x, int y);
+    bool check_for_completed_board();
 private: 
     int m_width;
     int m_height;

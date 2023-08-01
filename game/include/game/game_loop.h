@@ -12,6 +12,7 @@ class Game{
     int m_board_width; 
     int m_board_height; 
     Snake m_snake;
+    Food m_food;
     Board m_board; 
-    Food m_food;   
+       
 };
