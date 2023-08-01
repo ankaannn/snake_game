@@ -37,12 +37,12 @@ bool Board::update_board(){
     if(check_for_outside_board()){
         std::cout << "game over, outside the board" << std::endl;
         return false;
-    }        
+    }
+    add_food_to_board();
     if(!add_snake_to_board()){
         std::cout << "game over, crash into snake" << std::endl; 
         return false;
     };
-    add_food_to_board();
     m_has_eaten = false;
     if(check_for_food()){
         m_has_eaten = true;
@@ -85,12 +85,20 @@ bool Board::check_for_food(){
     Cell cell_head = m_snake.get_cells()[0];
     int x = cell_head.get_x();
     int y = cell_head.get_y(); 
-    if(m_board[y][x] == 2){
-        return true; 
+    if(m_food.get_x() == x && m_food.get_y() == y){
+        return true;
     }
     else{
-        return false;
+        return false; 
     }
+
+    
+    // if(m_board[y][x] == 2){
+    //     return true; 
+    // }
+    // else{
+    //     return false;
+    // }
     
 }
 
